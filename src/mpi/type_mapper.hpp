@@ -13,8 +13,6 @@
 #include <tuple>
 #include <type_traits>
 
-#include "util/are_same.hpp"
-
 namespace dss_schimek::mpi {
 
 template <typename CXXType>
