@@ -66,7 +66,7 @@ typename Data::StringContainer splitterSort(
 }
 template <typename StringLcpPtr>
 size_t getAvgLcp(const StringLcpPtr stringLcpPtr) {
-    auto lcps = stringLcpPtr.get_lcp();
+    auto lcps = stringLcpPtr.lcp();
     struct LcpSumNumStrings {
         size_t lcpSum;
         size_t numStrings;

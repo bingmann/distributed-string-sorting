@@ -55,8 +55,8 @@ public:
             dss_schimek::mpi::gatherv(contigousSortedStrings, 0);
         if (checkLcp_) {
             std::vector<uint64_t> localInput(sortedStrings.size());
-            std::copy(sortedStrings.get_lcp(),
-                sortedStrings.get_lcp() + sortedStrings.size(),
+            std::copy(sortedStrings.lcp(),
+                sortedStrings.lcp() + sortedStrings.size(),
                 localInput.begin());
             globalSortedLcps_ = dss_schimek::mpi::gatherv(localInput, 0);
         }

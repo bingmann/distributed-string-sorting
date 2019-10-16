@@ -1425,7 +1425,7 @@ public:
         //        generateHashStringIndices(strptr.active(), depth);
         GeneratedHashesLocalDupsEOSCandidates<HashStringIndex>
             hashStringIndicesEOSCandidates = generateHashStringIndices(
-                strptr.active(), depth, strptr.get_lcp());
+                strptr.active(), depth, strptr.lcp());
 
         std::vector<size_t>& localLcpDuplicates =
             hashStringIndicesEOSCandidates.localDups;
@@ -1498,7 +1498,7 @@ public:
         measuringTool.start("bloomfilter_generateHashStringIndices");
         GeneratedHashesLocalDupsEOSCandidates<HashStringIndex>
             hashStringIndicesEOSCandidates = generateHashStringIndices(
-                strptr.active(), candidates, depth, strptr.get_lcp());
+                strptr.active(), candidates, depth, strptr.lcp());
 
         std::vector<size_t>& localLcpDuplicates =
             hashStringIndicesEOSCandidates.localDups;

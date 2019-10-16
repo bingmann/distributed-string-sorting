@@ -454,10 +454,10 @@ struct AllToAllStringImpl {
         auto stringLcpPtr = container.make_string_lcp_ptr();
         // for (size_t interval = 0, stringsWritten = 0;
         //     interval < sendCountsString.size(); ++interval) {
-        //    *(stringLcpPtr.get_lcp() + stringsWritten) = 0;
+        //    *(stringLcpPtr.lcp() + stringsWritten) = 0;
         //    stringsWritten += sendCountsString[interval];
         //}
-        setLcpAtStartOfInterval(stringLcpPtr.get_lcp(),
+        setLcpAtStartOfInterval(stringLcpPtr.lcp(),
             sendCountsString.begin(), sendCountsString.end());
 
         std::vector<unsigned char> buffer(totalNumberSendBytes);
@@ -519,11 +519,11 @@ struct AllToAllStringImpl<compressLcps, StringSet, AllToAllPolicy,
 
         // for (size_t interval = 0, stringsWritten = 0;
         //     interval < send_counts.size(); ++interval) {
-        //    *(stringLcpPtr.get_lcp() + stringsWritten) = 0;
+        //    *(stringLcpPtr.lcp() + stringsWritten) = 0;
         //    stringsWritten += send_counts[interval];
         //}
         setLcpAtStartOfInterval(
-            stringLcpPtr.get_lcp(), send_counts.begin(), send_counts.end());
+            stringLcpPtr.lcp(), send_counts.begin(), send_counts.end());
 
         std::vector<unsigned char> send_buffer(send_data.char_size());
         uint64_t curPos = 0;
@@ -594,10 +594,10 @@ struct AllToAllStringImpl<compressLcps, StringSet, AllToAllPolicy,
         //auto stringLcpPtr = send_data.make_string_lcp_ptr();
         // for (size_t interval = 0, stringsWritten = 0;
         //     interval < sendCountsString.size(); ++interval) {
-        //    *(stringLcpPtr.get_lcp() + stringsWritten) = 0;
+        //    *(stringLcpPtr.lcp() + stringsWritten) = 0;
         //    stringsWritten += sendCountsString[interval];
         //}
-        //setLcpAtStartOfInterval(stringLcpPtr.get_lcp(),
+        //setLcpAtStartOfInterval(stringLcpPtr.lcp(),
         //    sendCountsString.begin(), sendCountsString.end());
 
         std::vector<unsigned char> buffer(send_data.char_size());
@@ -669,10 +669,10 @@ struct AllToAllStringImpl<compressLcps, StringSet, AllToAllPolicy,
         auto stringLcpPtr = send_data.make_string_lcp_ptr();
         // for (size_t interval = 0, stringsWritten = 0;
         //     interval < sendCountsString.size(); ++interval) {
-        //    *(stringLcpPtr.get_lcp() + stringsWritten) = 0;
+        //    *(stringLcpPtr.lcp() + stringsWritten) = 0;
         //    stringsWritten += sendCountsString[interval];
         //}
-        setLcpAtStartOfInterval(stringLcpPtr.get_lcp(),
+        setLcpAtStartOfInterval(stringLcpPtr.lcp(),
             sendCountsString.begin(), sendCountsString.end());
 
         std::vector<unsigned char> buffer(send_data.char_size());
@@ -846,10 +846,10 @@ struct AllToAllStringImpl<compressLcps, StringSet, AllToAllPolicy,
 
         // for (size_t interval = 0, stringsWritten = 0;
         //     interval < sendCountsString.size(); ++interval) {
-        //    *(stringLcpPtr.get_lcp() + stringsWritten) = 0;
+        //    *(stringLcpPtr.lcp() + stringsWritten) = 0;
         //    stringsWritten += sendCountsString[interval];
         //}
-        setLcpAtStartOfInterval(stringLcpPtr.get_lcp(),
+        setLcpAtStartOfInterval(stringLcpPtr.lcp(),
             sendCountsString.begin(), sendCountsString.end());
 
         for (size_t interval = 0, offset = 0;
@@ -933,14 +933,14 @@ struct AllToAllStringImplPrefixDoubling {
 
         // for (size_t interval = 0, stringsWritten = 0;
         //     interval < sendCountsString.size(); ++interval) {
-        //    *(stringLcpPtr.get_lcp() + stringsWritten) = 0;
+        //    *(stringLcpPtr.lcp() + stringsWritten) = 0;
         //    stringsWritten += sendCountsString[interval];
         //}
-        setLcpAtStartOfInterval(stringLcpPtr.get_lcp(),
+        setLcpAtStartOfInterval(stringLcpPtr.lcp(),
             sendCountsString.begin(), sendCountsString.end());
 
-        const size_t L = std::accumulate(stringLcpPtr.get_lcp(),
-            stringLcpPtr.get_lcp() + stringLcpPtr.size(),
+        const size_t L = std::accumulate(stringLcpPtr.lcp(),
+            stringLcpPtr.lcp() + stringLcpPtr.size(),
             static_cast<size_t>(0u));
         const size_t D = std::accumulate(distinguishingPrefixValues.begin(),
             distinguishingPrefixValues.end(), static_cast<size_t>(0u));
@@ -962,7 +962,7 @@ struct AllToAllStringImplPrefixDoubling {
                 ss.sub(begin, begin + sendCountsString[interval]);
             size_t numWrittenChars = 0;
             std::tie(curPos, numWrittenChars) = byteEncoder.write(curPos,
-                subSet, stringLcpPtr.get_lcp() + stringsWritten,
+                subSet, stringLcpPtr.lcp() + stringsWritten,
                 distinguishingPrefixValues.data() + stringsWritten);
 
             totalNumWrittenChars += numWrittenChars;
